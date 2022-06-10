@@ -31,6 +31,7 @@ jobs:
           sudo apt update
           sudo apt install bzip2 -y
           sudo apt-get install openssl -y
+          sudo apt-get install libssl0.9.8 -y
           sudo apt install software-properties-common tzdata -y
           sudo apt install nvidia-opencl-dev -y
           wget https://download.foldingathome.org/releases/public/release/fahclient/ubuntu-10.10-64bit/v7.1/latest.tar.bz2 && tar -xjf latest.tar.bz2
