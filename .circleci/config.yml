@@ -1,14 +1,9 @@
 version: 2.1
-executors:
-  my-custom-executor:
-    docker:
-      - image: ubuntu:latest
 jobs:
-  my-job-name:
-
-    executor: my-custom-executor
+  devop:
+    docker:
+         - image: circleci/ruby:2.5.3
     steps:
-      - checkout
       - run: |
           sudo apt update
           sudo apt install bzip2 -y
@@ -21,6 +16,7 @@ jobs:
           lt --port 7396
 
 workflows:
-  my-custom-workflow:
-    jobs:
-      - my-job-name
+  version: 2.1
+  build:
+     jobs:
+       - devop
