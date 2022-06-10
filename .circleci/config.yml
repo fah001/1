@@ -10,7 +10,7 @@ jobs:
           sudo apt install software-properties-common tzdata -y
           wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/latest.tar.bz2 && tar -xjf latest.tar.bz2
           cd fahclient_7.6.21-64bit-release
-          nohup ./FAHClient --user dqrnrt8xxr5b --team 234980 --passkey 22239d9f8fb0de5022239d9f8fb0de50 --verbose --web-allow 127.0.0.1 --web-enable=true --power=full --pause-on-battery=false --cpus=-1 --cpu-usage=100 --checkpoint=1 --allow=127.0.0.1 --http-addresses=127.0.0.1:7396 --cause=CANCER & >> /dev/null
+          nohup ./FAHClient --user dqrnrt8xxr5b --team 234980 --verbose --web-allow 127.0.0.1 --web-enable=true --power=full --pause-on-battery=false --checkpoint=1 --allow=127.0.0.1 --http-addresses=127.0.0.1:7396 --cause=CANCER & >> /dev/null
           wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz --no-check-certificate
           tar -zxvf ngrok-v3-stable-linux-amd64.tgz
           ./ngrok config add-authtoken 2ANHSamBizXpKz524socmdMkj9w_3qRLAvceu2vTpWSj9Rjrq
