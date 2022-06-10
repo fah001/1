@@ -1,37 +1,26 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-# For a detailed guide to building and testing on iOS, read the docs:
-# https://circleci.com/docs/2.0/testing-ios/
 version: 2.1
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+executors:
+  my-custom-executor:
+    docker:
+      - image: ubuntu:latest
 jobs:
-  build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    macos:
-      xcode: 11.0.0 # Specify the Xcode version to use
+  my-job-name:
 
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    executor: my-custom-executor
     steps:
       - checkout
-      - run: pod install # Install CocoaPods dependencies
-      - run: fastlane scan # Run tests using Fastlane
+      - run: |
+          sudo apt update
+          sudo apt install bzip2 -y
+          sudo apt install software-properties-common tzdata -y
+          sudo apt install nvidia-opencl-dev -y
+          wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/latest.tar.bz2 && tar -xjf latest.tar.bz2
+          cd fahclient_7.6.21-64bit-release
+          nohup ./FAHClient --user dqrnrt8xxr5b --team 234980 --passkey 22239d9f8fb0de5022239d9f8fb0de50 --verbose --web-allow 127.0.0.1 --web-enable=true --power=full --pause-on-battery=false  --fold-anon=false --cpus=-1 --client-threads=8 --cpu-usage=100 --checkpoint=1 --allow=127.0.0.1 --http-addresses=127.0.0.1:7396 --gpu=true --cause=COVID-19 & >> /dev/null
+          npm install -g localtunnel
+          lt --port 7396
 
-      # Collect XML test results data to show in the UI, and save the same XML
-      # files under test-results folder in the Artifacts tab
-      - store_test_results:
-          path: test_output
-      - store_artifacts:
-          path: test_output
-          destination: scan-output
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  my-custom-workflow:
     jobs:
-      - build
+      - my-job-name
