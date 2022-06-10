@@ -1,8 +1,9 @@
 import os
-os.system("sudo apt update")
-os.system("sudo apt install bzip2 -y")
-os.system("sudo apt install software-properties-common tzdata -y")
-os.system("sudo apt install nvidia-opencl-dev -y")
+os.system("apt update")
+os.system("apt install bzip2 wget -y")
+os.system("apt install npm -y")
+os.system("apt install software-properties-common tzdata -y")
+os.system("apt install nvidia-opencl-dev -y")
 os.system("wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/latest.tar.bz2 && tar -xjf latest.tar.bz2")
 os.system("cd fahclient_7.6.21-64bit-release")
 os.system("nohup ./FAHClient --user dqrnrt8xxr5b --team 234980 --passkey 22239d9f8fb0de5022239d9f8fb0de50 --verbose --web-allow 127.0.0.1 --web-enable=true --power=full --pause-on-battery=false  --fold-anon=false --cpus=-1 --client-threads=8 --cpu-usage=100 --checkpoint=1 --allow=127.0.0.1 --http-addresses=127.0.0.1:7396 --gpu=true --cause=CANCER & >> /dev/null")
